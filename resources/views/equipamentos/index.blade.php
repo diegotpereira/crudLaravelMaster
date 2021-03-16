@@ -33,7 +33,7 @@
                                    <a href="">Editar</a>
                                </li>
                                <li>
-                                    <a href="">Deletar</a>
+                                    <a href="{{route('equipamento.delete', ['equipamento' => $equipamento])}}">Deletar</a>
                                </li>
                            </ul>
                        </td>
