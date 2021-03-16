@@ -92,8 +92,17 @@ class EquipamentosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Equipamento $equipamento, Request $request)
     {
         //
+        if (! $request->has('cancel')) {
+            # code...
+            $equipamento->delete();
+            $request->session()->flash('message', 'Equipamento excluído com sucesso!.');
+        }else {
+            # code...
+            $request->session()->flash('message', 'Operação cancelada pelo usuário!.');
+        }
+        return redirect()->route('equipamento.index');
     }
 }
