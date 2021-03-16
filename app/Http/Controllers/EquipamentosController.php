@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipamento;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\EquipamentoFormRequest;
 class EquipamentosController extends Controller
 {
     /**
@@ -27,6 +27,10 @@ class EquipamentosController extends Controller
     public function create()
     {
         //
+        if (!session()->has('redirect_to')) {
+            # code...
+            session(['redirect_to' => url()->previous()]);
+        }
         return view('equipamentos.create', ['action'=>route('equipamento.store'), 'method'=>'post']);
     }
 
@@ -49,7 +53,7 @@ class EquipamentosController extends Controller
             # code...
             $request->session()->flash('message', 'A operação foi cancelada pelo usuário!.');
         }
-        return redirect()->to($url);
+        return redirect()->to(session()->pull('redirect_to'));
     }
 
     /**
