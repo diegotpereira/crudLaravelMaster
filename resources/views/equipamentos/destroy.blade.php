@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <h3>Deletar</h3>
-        <form action={{route('equipamento.destroy', ['equipamento' => $eqp->id]}} method="post">
+        <form action={{route('equipamento.destroy', ['equipamento' => $eqp->id])}} method="post">
         @csrf
         @method('DELETE')
         <input type="hidden" id="redirect_to" name="redirect_to" value="{{URL::previous()}}">
