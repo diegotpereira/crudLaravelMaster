@@ -1,4 +1,4 @@
-<form action={{ route('equipamento')}} method="post">
+<form action={{ route('equipamento.store')}} method="post">
    @csrf
    <input type="hidden" id="redirect_to" name="redirect_to" value="{{url::previous()}}">
    <div>
