@@ -81,9 +81,21 @@ class EquipamentosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Equipamento $equipamento, Request $request)
     {
         //
+        if (! $request->has('cancel')) {
+            # code...
+            $equipamento->tipo = $request->input('tipo');
+            $equipamento->modelo = $request->input('modelo');
+            $equipamento->fabricante = $request->input('fabricante');
+            $equipamento->update();
+            $request->session()->flash('message', 'Equipamento atualizado com sucesso !');
+        } else {
+            # code...
+            $request->session()->flash('message', 'Operação cancelada pelo usuário!.');
+        }
+        return redirect()->route('equipamento.index');
     }
 
     /**
