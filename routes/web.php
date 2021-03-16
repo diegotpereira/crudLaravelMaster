@@ -23,3 +23,6 @@ Route::resource('/equipamento', 'EquipamentosController')->except([
 Route::get('/equipamento/delete/{equipamento}', function (App\Models\Equipamento $equipamento){
     return view('equipamentos.destroy', ['eqp' => $equipamento]);
 })->name('equipamento.delete');
+Route::get('/equipamento/edit/{equipamento}', function(App\Models\Equipamento $equipamento){
+    return view('equipamentos.edit', ['eqp' => $equipamento]);
+})->name('equipamento.edit');
