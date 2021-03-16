@@ -43,6 +43,9 @@
    <div>
        <label for="fabricante">Fabicante</label>
        <input type="text" id="fabricante" name="fabricante" value="{{isset($eqp) ? $eqp->fabricante : old('fabricante')}}" {{$form_mode == "delete" ? "disabled" : ""}}>
+       @error('fabricante')
+           <div class="alert alert-danger">{{ $message }}</div>
+       @enderror
    </div>
 
    @if($form_mode == "delete")
