@@ -11,5 +11,6 @@
              <input type="submit" name="Cancel" value="Cancelar">
          </div>
     </div>
+    </form>
 </div>
 @endsection
