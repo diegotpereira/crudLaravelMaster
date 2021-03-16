@@ -40,7 +40,7 @@ class EquipamentosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EquipamentoFormRequest $request)
     {
         //
         $url = $request->get('redirect_to', route('equipamento.index'));
@@ -99,7 +99,7 @@ class EquipamentosController extends Controller
             # code...
             $request->session()->flash('message', 'Operação cancelada pelo usuário!.');
         }
-        return redirect()->route('equipamento.index');
+        return redirect()->to(session()->pull('redirect_to'));
     }
 
     /**
@@ -119,6 +119,6 @@ class EquipamentosController extends Controller
             # code...
             $request->session()->flash('message', 'Operação cancelada pelo usuário!.');
         }
-        return redirect()->route('equipamento.index');
+        return redirect()->to(session()->pull('redirect_to'));
     }
 }
