@@ -34,4 +34,13 @@ class EquipamentoFormRequest extends FormRequest
             'fabricante' => 'required',
         ];
     }
+    public function messages()
+    {
+        return [
+            'tipo.required' => 'O tipo do Equipamento deve ser preenchido!.',
+            'modelo.required' => 'O modelo do equipamento deve ser preenchido!.',
+            'modelo.max' => 'O campo modelo pode conter no máximo 15 caracteres',
+            'fabricante.required' => 'O fabricante do equipamento deve ser preenchido!',
+        ];
+    }
 }
