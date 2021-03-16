@@ -18,7 +18,7 @@
          </div>
          <div>
               <label for="fabricante">Fabricante</label>
-              <input type="text" id="fabricante" name="fabricante" value="{{$eqp->fabricante">
+              <input type="text" id="fabricante" name="fabricante" value="{{$eqp->fabricante}}">
          </div>
          <div class="form-group">
               <input type="submit" name="save_eqp" value="Atualizar">
