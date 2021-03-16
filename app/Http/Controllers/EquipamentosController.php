@@ -39,6 +39,17 @@ class EquipamentosController extends Controller
     public function store(Request $request)
     {
         //
+        $url = $request->get('redirect_to', route('equipamento.index'));
+        if (! $request->has('cancel')) {
+            # code...
+            $dados = $request->all();
+            Equipamento::create($dados);
+            $request->session()->flash('message', 'O equipamento foi cadastrado com sucesso!.');
+        }else {
+            # code...
+            $request->session()->flash('message', 'A operação foi cancelada pelo usuário!.');
+        }
+        return redirect()->to($url);
     }
 
     /**
