@@ -15,8 +15,8 @@ class EquipamentosController extends Controller
     public function index()
     {
         //
-        $equipamentos = Equipamento::all();
-        return view('equipamentos.index', compact('equipamentos'));
+        $equipamentos = Equipamento::paginate(10);
+        return view('equipamentos.index', ['equipamentos' => $equipamentos]);
     }
 
     /**
