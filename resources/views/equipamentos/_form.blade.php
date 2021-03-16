@@ -17,19 +17,41 @@
 @endphp
 
 
-<form action={{ route('equipamento.store')}} method="post">
+<form action={{$action}} method="post">
    @csrf
-   <input type="hidden" id="redirect_to" name="redirect_to" value="{{URL::previous()}}">
+   @if ($form_mode == "delete")
+     @method('DELETE')
+   @endif
+   @if ($form_mode == "edit")
+      @method('PUT')
+   @endif
+
    <div>
        <label for="tipo">Tipo Equipamento</label>
-       <input type="text" id="tipo" name="tipo">
+       <input type="text" id="tipo" name="tipo" value="{{isset($eqp) ? $eqp->tipo : old('tipo')}}" {{$form_mode == "delete" ? "disabled" : ""}}>
+       @error('tipo')
+           <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
    </div>
    <div>
        <label for="modelo">Modelo</label>
-       <input type="text" id="modelo" name="modelo">
+       <input type="text" id="modelo" name="modelo" value="{{isset($eqp) ? $eqp->modelo : old('modelo')}}" {{ $form_mode == "delete" ?  "disabled" : ""}}>
+       @error('modelo')
+          <div class="alert alert-danger">{{ $message }} </div>
+        @enderror
    </div>
    <div>
        <label for="fabricante">Fabicante</label>
-       <input type="text" id="fabricante" name="fabricante">
+       <input type="text" id="fabricante" name="fabricante" value="{{isset($eqp) ? $eqp->fabricante : old('fabricante')}}" {{$form_mode == "delete" ? "disabled" : ""}}>
    </div>
 
+   @if($form_mode == "delete")
+       <div class="alert alert-danger" role="alert">Está operação não pode ser desfeita! Confirma a exclusão do equipamento:</div>
+    @endif
+    <div>
+       <div class="form-group">
+            <input type="submit" name="save_eqp" value="{{$bot_label}}">
+            <input type="submit" name="cancel" value="Cancelar">
+       </div>
+    </div>
+</form>
