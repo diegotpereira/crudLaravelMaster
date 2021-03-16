@@ -27,6 +27,7 @@ class EquipamentosController extends Controller
     public function create()
     {
         //
+        return view('equipamentos.create', ['action'=>route('equipamento.store'), 'method'=>'post']);
     }
 
     /**
