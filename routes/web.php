@@ -21,8 +21,17 @@ Route::resource('/equipamento', 'EquipamentosController')->except([
     'show', 'edit'
 ]);
 Route::get('/equipamento/delete/{equipamento}', function (App\Models\Equipamento $equipamento){
+    if (!session()->has('redirect_to')) {
+        # code...
+        session(['redirect_to' => url()->previous()]);
+    }
     return view('equipamentos.destroy', ['eqp' => $equipamento]);
 })->name('equipamento.delete');
+
 Route::get('/equipamento/edit/{equipamento}', function(App\Models\Equipamento $equipamento){
+    if (!session()->has('redirect_to')) {
+        # code...
+        session(['redirect_to' => url()->previous()]);
+    }
     return view('equipamentos.edit', ['eqp' => $equipamento]);
 })->name('equipamento.edit');
